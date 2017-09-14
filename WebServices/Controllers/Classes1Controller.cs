@@ -10,57 +10,57 @@ using AttendanceToday.Model;
 namespace WebServices.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Students")]
-    public class StudentsController : Controller
+    [Route("api/Classes1")]
+    public class Classes1Controller : Controller
     {
         private readonly Db _context;
 
-        public StudentsController(Db context)
+        public Classes1Controller(Db context)
         {
             _context = context;
         }
 
-        // GET: api/Students
+        // GET: api/Classes1
         [HttpGet]
-        public IEnumerable<Student> GetStudentItems()
+        public IEnumerable<Class> GetClasses()
         {
-            return _context.Students;
+            return _context.Classes;
         }
 
-        // GET: api/Students/5
+        // GET: api/Classes1/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetStudent([FromRoute] int id)
+        public async Task<IActionResult> GetClass([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            var @class = await _context.Classes.SingleOrDefaultAsync(m => m.ID == id);
 
-            if (student == null)
+            if (@class == null)
             {
                 return NotFound();
             }
 
-            return Ok(student);
+            return Ok(@class);
         }
 
-        // PUT: api/Students/5
+        // PUT: api/Classes1/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent([FromRoute] int id, [FromBody] Student student)
+        public async Task<IActionResult> PutClass([FromRoute] long id, [FromBody] Class @class)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != student.ID)
+            if (id != @class.ID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(student).State = EntityState.Modified;
+            _context.Entry(@class).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace WebServices.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(id))
+                if (!ClassExists(id))
                 {
                     return NotFound();
                 }
@@ -81,45 +81,45 @@ namespace WebServices.Controllers
             return NoContent();
         }
 
-        // POST: api/Students
+        // POST: api/Classes1
         [HttpPost]
-        public async Task<IActionResult> PostStudent([FromBody] Student student)
+        public async Task<IActionResult> PostClass([FromBody] Class @class)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Students.Add(student);
+            _context.Classes.Add(@class);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetStudent", new { id = student.ID }, student);
+            return CreatedAtAction("GetClass", new { id = @class.ID }, @class);
         }
 
-        // DELETE: api/Students/5
+        // DELETE: api/Classes1/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent([FromRoute] int id)
+        public async Task<IActionResult> DeleteClass([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
-            if (student == null)
+            var @class = await _context.Classes.SingleOrDefaultAsync(m => m.ID == id);
+            if (@class == null)
             {
                 return NotFound();
             }
 
-            _context.Students.Remove(student);
+            _context.Classes.Remove(@class);
             await _context.SaveChangesAsync();
 
-            return Ok(student);
+            return Ok(@class);
         }
 
-        private bool StudentExists(int id)
+        private bool ClassExists(long id)
         {
-            return _context.Students.Any(e => e.ID == id);
+            return _context.Classes.Any(e => e.ID == id);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace WebServices
         {
             // entity framework
             var connection = @"Server=ABDELL\SERVER2014;Database=TestDB;Trusted_Connection=True;";
-            services.AddDbContext<StudentContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<Db>(options => options.UseSqlServer(connection));
 
             // Add framework services.
             services.AddMvc();

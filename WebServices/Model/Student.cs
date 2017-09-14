@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AttendanceToday.Model
 {
+    [Table("Student")]
     public class Student
     {
         public long ID { get; set; }
@@ -12,22 +14,21 @@ namespace AttendanceToday.Model
         public string Name { get; set; }
         public string FatherName { get; set; }
         public string ContactNumber { get; set; }
-        public long ClassID { get; set; }
 
         public Student()
         {
         }
     }
 
-    public class StudentContext : DbContext
+    public class Db : DbContext
     {
-        public StudentContext(DbContextOptions<StudentContext> options)
+        public Db(DbContextOptions<Db> options)
             : base(options)
         {
         }
 
         public DbSet<Student> Students { get; set; }
-
+        public DbSet<Class> Classes { get; set; }
     }
 
 }
