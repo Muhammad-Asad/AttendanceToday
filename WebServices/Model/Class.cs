@@ -1,5 +1,8 @@
-﻿namespace AttendanceToday.Model
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AttendanceToday.Model
 {
+    [Table("Class")]
     public class Class
     {
         public long ID { get; set; }

@@ -259,3 +259,27 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+bin
+obj
+*.user
+*.ncb
+*.suo
+*.v*cc
+*.rej
+*.orig
+Installer/RockMaker.exe.config
+*.exe
+Web/LogFiles/
+Installer/Binaries/
+Installer/DBEvolverData/RockMaker/
+Installer/InstallerUtility/
+Installer/SharedFiles/
+Web/RockMaker.Web.Mvc/RockMaker.Web.Mvc/bin
+Web/RockMaker.Web.Mvc/RockMaker.Web.Model/bin
+Web/RockMaker.Web.Mvc/RockMaker.Repository/bin
+Web/bin
+Web/RockMaker.Web.Mvc/RockMaker.Web.Mvc/Properties/PublishProfiles
+Installer/InstallerUtility/
+Web/RockMaker.Web.Mvc/RockMaker.Web.Mvc/LogFiles/
+Web/Publish/
